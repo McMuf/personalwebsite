@@ -44,7 +44,7 @@ const PROJECTS = [
     description: 'Minecraft Fabric mod — control Spotify from in-game jukeboxes. Features beat-synced particles, collaborative jam sessions, directional audio fade, and full playback keybinds. 50+ active users.',
     tags: ['Java', 'Node.js', 'Spotify API', 'Fabric'],
     
-    image: 'public/images/projects/spotifydjam.png',
+    image: '/images/projects/spotifydjam.png',
     link: 'https://github.com/McMuf/SpotifyDJam',
     linkLabel: 'View on GitHub',
     presentationLink: '',
