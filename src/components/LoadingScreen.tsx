@@ -28,9 +28,9 @@ function RoyalFlushAnim() {
 
   useEffect(() => {
     const ts = [
-      setTimeout(() => { setPhase('fan');  setMsgIdx(1) }, 100),
-      setTimeout(() => { setPhase('flip'); setMsgIdx(2) }, 580),
-      setTimeout(() => setMsgIdx(3), 1700),
+      setTimeout(() => { setPhase('fan');  setMsgIdx(1) }, 40),
+      setTimeout(() => { setPhase('flip'); setMsgIdx(2) }, 280),
+      setTimeout(() => setMsgIdx(3), 750),
     ]
     return () => ts.forEach(clearTimeout)
   }, [])
@@ -50,14 +50,14 @@ function RoyalFlushAnim() {
               transform: phase === 'stack'
                 ? 'rotateZ(0deg) translateY(0px)'
                 : `rotateZ(${f.angle}deg) translateY(${f.ty}px)`,
-              transition: phase === 'stack' ? 'none' : `transform 0.45s cubic-bezier(0.34,1.3,0.64,1) ${i*50}ms`,
+              transition: phase === 'stack' ? 'none' : `transform 0.28s cubic-bezier(0.34,1.3,0.64,1) ${i*30}ms`,
               zIndex: i,
             }}>
               <div style={{
                 width:'100%', height:'100%',
                 transformStyle:'preserve-3d',
                 transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                transition: flipped ? `transform 0.42s cubic-bezier(0.68,-0.3,0.27,1.35) ${i*110}ms` : 'none',
+                transition: flipped ? `transform 0.26s cubic-bezier(0.68,-0.3,0.27,1.35) ${i*60}ms` : 'none',
                 position:'relative',
               }}>
                 <div className="playing-card playing-card-back" style={{
@@ -95,14 +95,14 @@ function RoyalFlushAnim() {
 
 // ══ 1: Card Rain ════════════════════════════════════════════════
 const RAIN_CARDS = [
-  { x:-130, rot:-22, delay: 60, suit:'♠', color:'#c9a84c' },
-  { x: -70, rot: 14, delay:170, suit:'♥', color:'#c41e3a' },
-  { x: -10, rot: -9, delay:250, suit:'♦', color:'#c41e3a' },
-  { x:  55, rot: 20, delay:340, suit:'♣', color:'#c9a84c' },
-  { x:-100, rot:-28, delay:430, suit:'♠', color:'#c9a84c' },
-  { x:  25, rot: 11, delay:510, suit:'♥', color:'#c41e3a' },
-  { x: -40, rot:-16, delay:600, suit:'♦', color:'#c41e3a' },
-  { x: 100, rot: 25, delay:680, suit:'♣', color:'#c9a84c' },
+  { x:-130, rot:-22, delay: 20, suit:'♠', color:'#c9a84c' },
+  { x: -70, rot: 14, delay: 65, suit:'♥', color:'#c41e3a' },
+  { x: -10, rot: -9, delay:110, suit:'♦', color:'#c41e3a' },
+  { x:  55, rot: 20, delay:155, suit:'♣', color:'#c9a84c' },
+  { x:-100, rot:-28, delay:200, suit:'♠', color:'#c9a84c' },
+  { x:  25, rot: 11, delay:245, suit:'♥', color:'#c41e3a' },
+  { x: -40, rot:-16, delay:290, suit:'♦', color:'#c41e3a' },
+  { x: 100, rot: 25, delay:330, suit:'♣', color:'#c9a84c' },
 ]
 
 function CardRainAnim() {
@@ -112,8 +112,8 @@ function CardRainAnim() {
 
   useEffect(() => {
     const ts = [
-      setTimeout(() => setMsgIdx(1), 400),
-      setTimeout(() => { setMsgIdx(2); setShowAce(true) }, 1150),
+      setTimeout(() => setMsgIdx(1), 160),
+      setTimeout(() => { setMsgIdx(2); setShowAce(true) }, 500),
     ]
     return () => ts.forEach(clearTimeout)
   }, [])
@@ -128,7 +128,7 @@ function CardRainAnim() {
           left:`calc(50% + ${c.x}px)`,
           top:'0',
           width:'38px', height:'54px',
-          animation:`cardRainFall 0.88s cubic-bezier(0.4,0,0.7,1) ${c.delay}ms both`,
+          animation:`cardRainFall 0.55s cubic-bezier(0.4,0,0.7,1) ${c.delay}ms both`,
           zIndex:1,
         } as CSSProperties}>
           <div className="playing-card playing-card-back" style={{
@@ -191,8 +191,8 @@ function CoinFlipAnim() {
 
   useEffect(() => {
     const ts = [
-      setTimeout(() => { setSpinning(true); setMsgIdx(1) }, 300),
-      setTimeout(() => { setDone(true); setMsgIdx(2) }, 2050),
+      setTimeout(() => { setSpinning(true); setMsgIdx(1) }, 80),
+      setTimeout(() => { setDone(true); setMsgIdx(2) }, 830),
     ]
     return () => ts.forEach(clearTimeout)
   }, [])
@@ -204,7 +204,7 @@ function CoinFlipAnim() {
           width:'110px', height:'154px',
           transformStyle:'preserve-3d',
           position:'relative',
-          animation: spinning ? 'coinFlipSpin 1.75s cubic-bezier(0.4,0,0.12,1) both' : 'none',
+          animation: spinning ? 'coinFlipSpin 0.75s cubic-bezier(0.4,0,0.12,1) both' : 'none',
         }}>
           {/* Front — Ace of Spades */}
           <div style={{
@@ -266,9 +266,9 @@ function SuitConvergeAnim() {
 
   useEffect(() => {
     const ts = [
-      setTimeout(() => { setPhase('converge'); setMsgIdx(1) }, 150),
-      setTimeout(() => setFlash(true), 1360),
-      setTimeout(() => { setPhase('explode'); setMsgIdx(2) }, 1600),
+      setTimeout(() => { setPhase('converge'); setMsgIdx(1) }, 50),
+      setTimeout(() => setFlash(true), 580),
+      setTimeout(() => { setPhase('explode'); setMsgIdx(2) }, 700),
     ]
     return () => ts.forEach(clearTimeout)
   }, [])
@@ -292,7 +292,7 @@ function SuitConvergeAnim() {
             opacity: phase === 'explode' ? 0 : 1,
             transition: phase === 'spread' ? 'none'
               : phase === 'converge'
-              ? `all 0.72s cubic-bezier(0.34,1.35,0.64,1) ${i*75}ms`
+              ? `all 0.38s cubic-bezier(0.34,1.35,0.64,1) ${i*40}ms`
               : 'all 0.38s ease',
             textShadow: phase === 'converge'
               ? `0 0 26px ${s.color}cc, 0 0 52px ${s.color}44`
@@ -309,7 +309,7 @@ function SuitConvergeAnim() {
             position:'absolute', left:'50%', top:'50%',
             transform:'translate(-50%,-50%)',
             width:'1px', height:'1px',
-            animation:'suitBurst 0.58s ease both',
+            animation:'suitBurst 0.35s ease both',
             zIndex:1,
           }}/>
         )}

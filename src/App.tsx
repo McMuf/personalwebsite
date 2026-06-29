@@ -32,7 +32,7 @@ function AnimatedRoutes() {
       const timer = setTimeout(() => {
         setDisplayLocation(location)
         setLoading(false)
-      }, 2500)
+      }, 1000)
       return () => clearTimeout(timer)
     }
   }, [location, displayLocation])
