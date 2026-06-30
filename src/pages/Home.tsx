@@ -57,20 +57,20 @@ function CardIntro({ onComplete }: { onComplete: () => void }) {
             borderRight: i < 5 ? '1px solid rgba(201,168,76,0.2)' : 'none',
           }}
         >
-          {/* Card inner — spins on Y axis */}
+          {/* Card inner — each face animates independently to avoid text mirroring */}
           <div style={{
             width:'100%', height:'100%',
             position:'relative',
             transformStyle:'preserve-3d',
-            transform: flipped[i] ? 'rotateY(-180deg)' : 'rotateY(0deg)',
-            transition:'transform 0.68s cubic-bezier(0.4,0,0.2,1)',
           }}>
 
-            {/* ── Back face ── */}
+            {/* ── Back face — rotates away when flipped ── */}
             <div style={{
               position:'absolute', inset:0,
               backfaceVisibility:'hidden',
               WebkitBackfaceVisibility:'hidden',
+              transform: flipped[i] ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              transition:'transform 0.68s cubic-bezier(0.4,0,0.2,1)',
               backgroundColor:'#12123a',
               backgroundImage:`
                 repeating-linear-gradient(45deg,  rgba(201,168,76,0.1) 0, rgba(201,168,76,0.1) 1px, transparent 0, transparent 50%),
@@ -92,13 +92,14 @@ function CardIntro({ onComplete }: { onComplete: () => void }) {
               }}/>
             </div>
 
-            {/* ── Front face ── */}
+            {/* ── Front face — rotates in from behind, lands at 0deg (never mirrored) ── */}
             <div style={{
               position:'absolute', inset:0,
               background:'#f8f4ea',
               backfaceVisibility:'hidden',
               WebkitBackfaceVisibility:'hidden',
-              transform:'rotateY(180deg)',
+              transform: flipped[i] ? 'rotateY(0deg)' : 'rotateY(-180deg)',
+              transition:'transform 0.68s cubic-bezier(0.4,0,0.2,1)',
               display:'flex', flexDirection:'column',
               alignItems:'center', justifyContent:'center',
             }}>
